@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+    <html xmlns:th="http://www.thymeleaf.org">
+    <head>
+</head>
+<body>
+    <div class="row" ng-controller="adminCtrl">
+        <div>
+            <ul class="nav nav-pills nav-stacked col-md-2 tab"  id="myTab">
+                <li class="active"><a href="#category"  data-toggle="tab">Category</a></li>
+                <li><a href="#subcategory"  data-toggle="tab">Subcategory</a></li>
+                <li><a href="#product" data-toggle="tab">Product</a></li>
+                <li><a href="#image" data-toggle="tab">Image</a></li>
+            </ul>
+        </div>
+
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active row" id="category">
+                <div class="col-sm-5 col-sm-offset-1 text-center">
+                    <h2>Insert new category</h2>
+                </div>
+                <div class="col-sm-5 col-sm-offset-1 text-center">
+                    <h3>Category:</h3> <input id="sizeButton" class="panel panel-default" ng-model="newCategory" placeholder="New category"/>
+                </div>
+                <div class="col-sm-5 col-sm-offset-1 text-center">
+                    <button id="sizeButton" class="btn btn-default " ng-click="insertCategory()">{{buttonCategory}}</button>
+                </div>
+
+
+            </div>
+
+            <div role="tabpanel" class="tab-pane row" id="subcategory">
+                <div class="col-sm-5 col-sm-offset-3">
+                    <h2>Insert new Subcategory</h2>
+                </div>
+                <div class="col-sm-5">
+                    <div class="dropdown marginTop2">
+                        <h3>Category :</h3>
+                        <button style="margin-top: 2%" class="btn btn-default dropdown-toggle" id="sizeButton" type="button" data-toggle="dropdown">
+                            {{getCategoryName}}
+                            <i class="glyphicon glyphicon-chevron-down"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li ng-repeat="item in categoryList">
+                                <a href="#" ng-click="getCategoryForSubCategory(item)">{{item}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="col-sm-5 marginTop">Subcategory  :</h3>
+                    <div class="col-sm-5">
+                        <input ng-model="newSubCategory" id="sizeButton" class="panel panel-default"/>
+                    </div>
+                    <div class="col-sm-5">
+                        <button class="btn btn-default" id="sizeButton" ng-click="insertSubCategory()">{{buttonSubCategory}}</button>
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="product">
+                <div class="col-sm-5 col-sm-offset-2">
+                    <h2>Indert Product</h2>
+                </div>
+                <div class="col-sm-5 col-sm-offset-2 marginTop">
+                    <div>
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="sizeButton">
+                                {{getCategoryNameProduct}}
+                                <i class="glyphicon glyphicon-chevron-down"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li ng-repeat="item in categoryList">
+                                    <a  ng-click="getCategoryForSubCategory2(item)">{{item}}</a>
+                                </li>
+                            </ul>
+                         </div>
+                    </div>
+
+                    <div class="dropdown" id="marginButton_7">
+                        <button id="sizeButton" ng-click=" getSubcategory(getCategoryNameProduct)" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                            {{getSubcategoryNameProduct}}
+                             <i class="glyphicon glyphicon-chevron-down"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li  ng-repeat = "item1 in subCategoryList">
+                                <a ng-click="setSubcategory(item1)">{{item1}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-sm-4 col-sm-offset-1">
+                    <form class="form-group" name='insertProduct'>
+                        <div class="form-group" ng-repeat="item2 in listField">
+                            <div>
+                                    <div class="control-label text-uppercase positionleft">
+                                        {{item2}}
+                                    </div>
+                                    <span ng-hide="formData.item2.length>0" class="error" ng-show='insertProduct.$error.required'>: Enter {{item2}}</span>
+                                    <div>
+                                        <input class="form-control" name="{{item2}}" ng-model="formData.item2" ng-change="setDescriptionNewProduct(item2, formData.item2)" required="true"/>
+                                    </div>
+                            </div>
+                        </div>
+
+                        <div ng-show="listField.length>0">
+
+                            <img src="/image/Smartfon/image11.jpg"/>
+                            <img ng-src="../image/Smartfon/image11.jpg"/>
+                            <!--/////////////////////////////////-->
+                            <button  class="btn btn-default" type="button" data-toggle="modal" data-target="#myModal" ng-click="getListImage()"> ADD IMAGE</button>
+                            <img class="img-circle col-sm-offset-1" ng-src="{{image}}" width="80" height="80"/>
+                            <div id="myModal" class="modal fade" ng-controller="listImageCtrl">
+                                <div class="modal-dialog modal-ld">
+                                    <div class="modal-content">
+                                        <div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
+                                            <h4 class="modal-title">Select Image </h4>
+                                        </div>
+                                        <div class="modal-body" style="background-color: #999999">
+                                            <div ng-repeat="itemImage in srcListImage">
+                                                <div class="imagePosition">
+                                                    <img class="img-thumbnail" ng-click="setImageProduct(itemImage)" ng-src="{{itemImage}}" onload="alert ('смотри и балдей')"
+                                                         onerror="alert ('увы, такого файла нет')"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--/////////////////////////////////////-->
+                        </div>
+
+                        <div class="col-sm-offset-11">
+                            <button ng-disabled='insertProduct.$invalid' class="btn btn-success" ng-show="listField.length>0" ng-click="insertProductTest()">Insert</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div role="tabpanel" class="tab-pane" id="image">
+                <div class="col-md-4 col-md-offset-2">
+                    <h2>Insert new image</h2>
+                    <br/>
+                    <div ng-controller="listImageCtrl">
+
+                        <form method="POST" enctype="multipart/form-data" action="/upload" modelAttribute="uploadForm">
+
+                            <div class="dropdown positionleft">
+                                <button class="btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="sizeButton">
+                                    {{getCategoryNameProduct}}
+                                    <i class="glyphicon glyphicon-chevron-down"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li ng-repeat="item in showListSubcategory">
+                                        <a  ng-click="loadImage(item)">{{item}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <input type="text" name="name_file" value="{{sub}}"/>
+                            <br/>
+                            <input type="file" name="file"/>
+                            <br/>
+                            <input type="submit" class="btn btn-success" value="upload"/>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

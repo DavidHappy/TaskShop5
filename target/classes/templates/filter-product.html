@@ -1,0 +1,35 @@
+
+<div>
+    <div ng-show="product[0].brand">
+        <button class="btn-block btn btn-default" data-toggle="collapse" data-target="#brand">Brand</button>
+        <div id="brand" class="collapse">
+            <div ng-repeat="item in product">
+                {{setArraylist(item.brand, 'brand')}}
+            </div>
+
+            <div ng-repeat="item in unique(arrayBrand)">
+                <div>
+                    <label class="checkbox-inline center-block"><input type="checkbox" ng-click="selectProduct('brand',item)" id="{{item}}"/>:{{item}}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-show="product[0].color">
+        <button class="btn-block btn btn-default" data-toggle="collapse" data-target="#color">Color</button>
+        <div id="color" class="collapse">
+            <div ng-repeat="item in product">
+                {{setArraylist(item.color, 'color')}}
+            </div>
+            <div ng-repeat="item in unique(arrayColor)">
+                <div>
+                    <!--<label class="checkbox-inline center-block"><input type="checkbox" id="{{item}}"/>:{{item}}</label>-->
+                    <label class="checkbox-inline center-block"><input type="checkbox" ng-click="selectProduct('color',item)" id="{{item}}"/>:{{item}}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

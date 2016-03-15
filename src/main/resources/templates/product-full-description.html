@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Title</title>
+</head>
+<body>
+    <label id="titleProduct">
+        <div ng-click="getName()" class="cursorHand"><h2>{{product.name}}</h2></div>
+    </label>
+    <div class="row">
+        <div class="col-sm-6">
+
+            <div class="col-sm-offset-4">
+                <img class="cursorHand img-thumbnail" src="{{product.image}}" width="50%" data-toggle="modal" data-target="#myModal"/>
+                <div id="myModal" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
+                                <h4 class="modal-title">Image product - {{product.name}}</h4>
+                            </div>
+                            <div class="modal-body">
+                                <img id="imageModal" class="img-thumbnail" src="{{product.image}}"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <table id="tableParams" class="table table-bordered table-hover">
+                    <thead>
+                        <th class="text-center titleTable"><h3>Param</h3></th>
+                        <th class="text-center titleTable"><h3>Description</h3></th>
+                    </thead>
+                    <tbody ng-repeat="item in listParam">
+                        <tr>
+                            <td class="itemNameParam text-center text-uppercase">{{getNameParam(item)}}</td>
+                            <td class="text-center">{{item}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <div class="col-sm-3">
+            <div class="blockBasket">
+                <button class="btn btn-info sizeButton col-sm-offset-8">Info</button>
+                <p>
+                    <button  class="btn btn-success sizeButton col-sm-offset-8" data-toggle="modal" data-target="#busketModal" ng-click="getClickBasket()">Basket</button>
+                    <div id="busketModal" class="modal fade">
+                        <div class="modal-dialog modal-lg" ng-show="getConnected()==true" ng-hide="getConnected()==false">
+                            <div class="modal-content">
+                                <div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
+                                    <h4 class="modal-title">Ordering of goods / <span id="priceTitleModal">{{product.name}}</span></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <img class="img-thumbnail" id="imageBasket" src="{{product.image}}"/>
+                                        </div>
+
+                                        <div class="col-sm-1" align="right">
+                                            <i class="glyphicon glyphicon-minus" ng-click="minusCount()"></i>
+                                        </div>
+
+                                        <div class="col-sm-2" align="center">
+                                            <input class='panel panel-default' type="number" ng-model='countGoods' min="1" max="999"/>
+                                        </div>
+
+                                        <div class="col-sm-2 col-sm-offset-1">
+                                            <i ng-click="addCount()" class="glyphicon glyphicon-plus"></i>
+                                        </div>
+
+                                        <div class="col-sm-3 col-sm-offset-2">
+                                            <h3 id="priceName">Price</h3>
+                                            <p>
+                                                <h3 id="priceBuy">{{priceBuy(countGoods, product.price)}}</h3>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4 col-sm-offset-1">
+                                            <h3 id="priceTitleModal">Сontact information</h3>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-2 col-sm-offset-1">
+                                            Name :
+                                        </div>
+                                        <div class="col-sm-4">
+                                            {{userInfo().name}}
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-2 col-sm-offset-1">
+                                            Surname :
+                                        </div>
+                                        <div class="col-sm-4">
+                                            {{userInfo().subname}}
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-2 col-sm-offset-1">
+                                            Email :
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <input class="panel panel-info" type="email" value="{{userInfo().email}}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-2 col-sm-offset-1">
+                                            Phone number :
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <input class="panel panel-info" type="number" ng-model="phone"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-success sizeButton" type="button" ng-click="buyOrder()">Order</button>
+                                    <button class="btn btn-danger sizeButton" type="button" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </p>
+            </div>
+
+            <div class="blockComments">
+                <h3>Comments</h3>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<div>
+    <div class="row">
+        <h2 class="col-sm-12 col-sm-offset-5">Order</h2>
+    </div>
+    <div class="row">
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+                <th class="col-sm-1 text-center"><h4>Date</h4></th>
+                <th class="col-sm-1 text-center"><h4>Name User</h4></th>
+                <th class="col-sm-1 text-center"><h4>Surname User</h4></th>
+                <th class="col-sm-1 text-center"><h4>Phone</h4></th>
+                <th class="col-sm-1 text-center"><h4>Email</h4></th>
+                <th class="col-sm-1 text-center"><h4>id Product</h4></th>
+                <th class="col-sm-1 text-center"><h4>Count</h4></th>
+                <th class="col-sm-1 text-center"><h4>Price</h4></th>
+                <th class="col-sm-1 text-center"><h4>Order is accepted</h4></th>
+            </thead>
+            <tbody ng-repeat="item in allOrder">
+                <tr class="sold">
+                    <td class="text-center">{{item.date_buy}}</td>
+                    <td class="text-center">{{item.regUserEntity.name}}</td>
+                    <td class="text-center">{{item.regUserEntity.subname}}</td>
+                    <td class="text-center">{{item.phone}}</td>
+                    <td class="text-center">{{item.regUserEntity.email}}</td>
+                    <td class="cursorHand text-center">
+                        <a ng-click="getInfoProduct(item.nameProduct, $index)"  data-toggle="modal" data-target="#modalInfoProduct">
+                            {{item.nameProduct}}
+                        </a>
+                        <div id="modalInfoProduct" class="modal fade">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
+                                        <h4 class="modal-title">Name: <span class="nameProductModal">{{infoProduct.name}}</span></h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <img class="img-thumbnail" src="{{infoProduct.image}}"/>
+                                            </div>
+                                            <div class="col-sm-3 col-sm-offset-1">
+                                                <h4>Subcategory</h4>
+                                                <h4>Price</h4>
+                                                <h4 ng-show="infoProduct.color">Color</h4>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <h4>:</h4>
+                                                <h4>:</h4>
+                                                <h4 ng-show="infoProduct.color">:</h4>
+
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <h4 class="nameProductModal">{{infoProduct.nameSubcategory}}</h4>
+                                                <h4 class="nameProductModal">{{infoProduct.price}}</h4>
+                                                <h4 class="nameProductModal" ng-show="infoProduct.color">{{infoProduct.color}}</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer"><button class="btn btn-default" type="button" data-dismiss="modal">Close</button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="text-center">{{item.count}}</td>
+                    <td class="text-center">{{item.price}}</td>
+
+                    <td ng-click="soldTrue($index)" ng-show="item.sold == 'false'" class="cursorHand text-center sold" id="soldFalse">{{item.sold}}</td>
+                    <td ng-show="item.sold == 'true'" class="cursorHand text-center sold" id="soldTrue">{{item.sold}}</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

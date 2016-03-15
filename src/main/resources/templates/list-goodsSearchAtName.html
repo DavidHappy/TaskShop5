@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Title</title>
+</head>
+<body>
+<div class="test">
+    <div dir-paginate="item in getGoods()|itemsPerPage:16">
+        <div class="image-padding thumbnail col-sm-2">
+            <div  id="box-selection" ng-mouseenter = "focus = true" ng-mouseleave = "focus = false">
+                <img src="{{item.image}}" class="img-thumbnail center-block"/>
+                <h3 class="text-muted colorText">Name:  {{item.name}}</h3>
+                <div ng-show="item.brand">
+                    <h4 class="text-muted colorText">Brand: {{item.brand}}</h4>
+                </div>
+                <p>
+                <div ng-show="item.color">
+                    <h4 class="text-muted colorText" ng-show="focus" ng-hide="!focus">Color: {{item.color}}</h4>
+                </div>
+                </p>
+                <h4 class="text-right text-muted" id="colorPrice">Price: {{item.price}}</h4>
+                <a href="/product-full-description/{{item.nameSubcategory}}/{{item.id}}" ng-show="focus" ng-hide="!focus">Подробнее</a>
+            </div>
+        </div>
+    </div>
+    <div ng-show="getGoods().length>16" class="col-sm-6 col-sm-offset-3">
+        <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true">
+
+        </dir-pagination-controls>
+    </div>
+</div>
+</body>
+</html>

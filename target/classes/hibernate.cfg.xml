@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+      <property name="connection.url">jdbc:postgresql://localhost:5432/db_shop25</property>
+      <property name="connection.driver_class">org.postgresql.Driver</property>
+      <property name="connection.password">werty12345</property>
+      <property name="connection.username">postgres</property>
+
+      <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+
+      <!--<property name="connection.url">jdbc:postgresql://evcnhfpokndocm:9QsmvyvkCRK7r5EIDBMOBidcbM@ec2-107-20-224-236.compute-1.amazonaws.com:5432/dfcu74iv6leeok</property>-->
+      <!--<property name="connection.driver_class">org.postgresql.Driver</property>-->
+      <!--<property name="connection.password">9QsmvyvkCRK7r5EIDBMOBidcbM</property>-->
+      <!--<property name="connection.username">evcnhfpokndocm</property>-->
+
+      <!--<property name="hbm2ddl.auto">update</property>-->
+
+      <mapping class="com.example.database.user.RegUserEntity"/>
+      <mapping class="com.example.database.user.BuyUserEntity"/>
+
+
+      <mapping class="com.example.database.parent.SubcategoryParent"/>
+      <mapping class="com.example.database.category.CategoryName"/>
+
+      <mapping class="com.example.database.productEntity.Smart"/>
+      <mapping class="com.example.database.productEntity.Notebook"/>
+
+
+  </session-factory>
+</hibernate-configuration>

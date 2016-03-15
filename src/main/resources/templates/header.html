@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring Security Example</title>
+</head>
+<body>
+<div class="header container-fluid" ng-controller="headerCtrl">
+    <div class="row background-header" >
+        <div class="header-top" >
+            <div class="col-sm-2">
+                <a href="/about" class="btn btn-link colorLink">About as</a>
+            </div>
+            <div class="col-sm-2 ">
+                <a href="/contact" class="btn btn-link colorLink">Contacts</a>
+            </div>
+            <div class="col-sm-2 ">
+                <a href="/promotions" class="btn btn-link colorLink">Promotions</a>
+            </div>
+
+            <div  class="col-sm-2" ng-hide="getIsAdmin()==false" ng-show="getIsAdmin()">
+                <form action="/admin/admin-page">
+                    <input type="submit"  value="Admin" class="btn btn-link colorLink"/>
+                </form>
+            </div>
+
+            <div class="col-sm-2 login navbar-right padding-input">
+                <button class="btn btn-primary" data-toggle="modal" data-target="#modal-1">
+                    <i class="glyphicon glyphicon-log-in " id="paddingIcon"></i>Login
+                </button>
+            </div>
+        </div>
+    </div>
+    <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <div ng-controller="loginPasswordCtrl" class="modal fade" id="modal-1">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" type="button" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Input</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-group">
+                        <div class="navbar-form">
+                            <div>
+                                <input class="form-control" ng-model="loginUser" placeholder="Login"/>
+                            </div>
+                            <div class="padding-input">
+                                <input class="form-control" ng-model="passwordUser" type="password" placeholder="Password"/>
+                            </div>
+                            <div data-dismiss="modal">
+                                <a href="#" ng-click="clearField()" class="padding-input" data-toggle="modal" data-target="#modal-2">Registration</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="navbar-form form-group">
+                        <button class="btn btn-success button-ok" ng-click="searchUser()">Ok</button>
+                        <button ng-click="clearField()" class="btn btn-danger button-ok" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/////////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <div ng-controller="registrationCtrl" class="modal fade" id="modal-2">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Registration</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-group" name='clientForm'>
+                        <div class="navbar-form">
+                            <div>
+                                <label>Login *</label>
+                                <input class='panel panel-danger' ng-model='regLogin' name='login' id="reg_user_login" required="true"/>
+                                <span class="error" ng-show='clientForm.login.$error.required'>Enter Login</span>
+                            </div>
+                            <div>
+                                <label>Password *</label>
+                                <input class='panel panel-danger' ng-model='regPassword' name='password' id="reg_user_password" required="true"/>
+                                <span class="error" ng-show='clientForm.password.$error.required'>Enter Password</span>
+                            </div>
+                            <div>
+                                <label>Name *</label>
+                                <input class='panel panel-danger' ng-model='regName' name='name' id="reg_user_name" required="true"/>
+                                <span class="error" ng-show='clientForm.name.$error.required'>Enter Name</span>
+                            </div>
+                            <div>
+                                <label>Subname *</label>
+                                <input class='panel panel-danger' ng-model='regSubname' name='subname' id="reg_user_subname" required="true"/>
+                                <span class="error" ng-show='clientForm.subname.$error.required'>Enter Subname</span>
+                            </div>
+                            <div>
+                                <label>Age *</label>
+                                <input class='panel panel-danger' type="number" ng-model='regAge' name='age' id="reg_user_age" required="true" min="1" max="150"/>
+                                <span class="error" ng-show='clientForm.age.$error.required'>Enter Age</span>
+                                <span  class="error" ng-show='clientForm.age.$error.min'>Age should be greater than 1</span>
+                                <span  class="error" ng-show='clientForm.age.$error.max'>Age should be lesser than 150</span>
+                            </div>
+                            <div>
+                                <label>E-Mail *</label>
+                                <input type="email" class='panel panel-danger' ng-model='regMail' name='mail' id="reg_user_mail" required="true"/>
+                                <span class="error" ng-show='clientForm.mail.$error.required'>Enter E-Mail</span>
+                                <span class="error" ng-show='clientForm.mail.$error.email'>This is not a valid email</span>
+                            </div>
+                        </div>
+                        <div class="modal-footer navbar-form form-group">
+                            <button type="submit" class="btn btn-success button-ok" ng-click="registration_ok()"
+                                    data-dismiss="modal" ng-disabled='clientForm.$invalid'>Ok</button>
+                            <button class="btn btn-danger button-ok" data-dismiss="modal" ng-click="registration_cancel()">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--////////////////////////////////////////////////////////////////////////-->
+    <div class="row backgroundImageTitle">
+        <div class="col-sm-5">
+            <form action="/">
+                <input type="image" src="image/title/shop_icon.png" th:width="100" class="img-rounded padding"/>
+            </form>
+        </div>
+        <div class="col-sm-3 col-sm-offset-4 marginInputSearch">
+            <input ng-model="searchProduct" class="panel panel-default" placeholder="Product name" style="height: 29px"/>
+            <a href="/list-goodsSearchAtName" class="btn btn-primary" ng-click="getGoodsAtName()">Search</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+

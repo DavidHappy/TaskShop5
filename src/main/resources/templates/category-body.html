@@ -1,0 +1,51 @@
+<!--<div class="category-frame" ng-controller="categoryBodyCtrl">-->
+    <!--<h3 id="categoryTitle">Category</h3><br/>-->
+
+    <!--<div class="panel-group" id="collapse-group">-->
+        <!--<div class="panel panel-default"  ng-repeat="item in categoryList">-->
+            <!--<div class="panel-heading">-->
+                <!--<h4 class="panel-title">-->
+                    <!--<button ng-click="getSubcategory(item)" class="btn brn-default btn-block" data-toggle="collapse" data-parent="#collapse-group" href="#{{item}}">{{item}}</button>-->
+                <!--</h4>-->
+            <!--</div>-->
+            <!--<div id="{{item}}" class="panel-collapse collapse">-->
+                <!--<div class="panel-body" ng-repeat="subcategory in subCategoryList">-->
+                    <!--<a href="/list-goods" ng-click="listProduct(subcategory)" style="background-color: white" class="btn btn-block">{{subcategory}}</a>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+<!--</div>-->
+
+<!DOCTYPE html>
+<html lang="en" ng-app="App" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Shop</title>
+
+    <script th:src="@{/vector/angular.js}"></script>
+    <script th:src="@{/vector/angular-route.js}"></script>
+    <script th:src="@{/vector/angular-ui-router.js}"></script>
+    <script th:src="@{/vector/jquery-1.11.3.js}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.min.js"></script>
+
+    <script th:src="@{/js/app.js}"></script>
+    <script th:src="@{/js/controller/contact.js}"></script>
+
+    <link th:href="@{/vector/bootstrap/bootstrap/css/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{/vector/bootstrap/bootstrap/css/bootstrap-theme.css}" rel="stylesheet"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <link th:href="@{/css/registration.css}" rel="stylesheet"/>
+    <script th:src="@{/vector/bootstrap/bootstrap/js/bootstrap.js}"></script>
+
+
+</head>
+<body>
+<div class="category-frame" ng-controller="categoryBodyCtrl">
+    <h3 id="categoryTitle">Category</h3><br/>
+
+    <div ui-view="left"></div>
+
+</div>
+</body>
+</html>

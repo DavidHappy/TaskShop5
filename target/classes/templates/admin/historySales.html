@@ -1,0 +1,87 @@
+<div ng-controller="historySalesCtrl">
+    <div class="row">
+        <h2 class="col-sm-12 col-sm-offset-5">History Sales</h2>
+    </div>
+
+    <div class="row">
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+                <th ng-click="sort('date_buy')" class="col-sm-1 text-center">
+                    <h4>Date <span class="glyphicon sort-icon" ng-show="sortKey=='date_buy'" ng-class="{'glyphicon glyphicon-chevron-up':reverse, 'glyphicon glyphicon-chevron-down':!reverse}"></span>
+                    </h4>
+                </th>
+                <th ng-click="sort('regUserEntity.name')" class="col-sm-1 text-center">
+                    <h4>Name User  <span class="glyphicon sort-icon" ng-show="sortKey=='regUserEntity.name'" ng-class="{'glyphicon glyphicon-chevron-up':reverse, 'glyphicon glyphicon-chevron-down':!reverse}"></span></h4>
+                </th>
+                <th ng-click="sort('regUserEntity.subname')" class="col-sm-1 text-center">
+                    <h4>Surname User <span class="glyphicon sort-icon" ng-show="sortKey=='regUserEntity.subname'" ng-class="{'glyphicon glyphicon-chevron-up':reverse, 'glyphicon glyphicon-chevron-down':!reverse}"></span></h4>
+                </th>
+                <th ng-click="sort('phone')" class="col-sm-1 text-center">
+                    <h4>Phone <span class="glyphicon sort-icon" ng-show="sortKey=='phone'" ng-class="{'glyphicon glyphicon-chevron-up':reverse, 'glyphicon glyphicon-chevron-down':!reverse}"></span></h4>
+                </th>
+                <th ng-click="sort('regUserEntity.email')" class="col-sm-1 text-center">
+                    <h4>Email <span class="glyphicon sort-icon" ng-show="sortKey=='regUserEntity.email'" ng-class="{'glyphicon glyphicon-chevron-up':reverse, 'glyphicon glyphicon-chevron-down':!reverse}"></span></h4>
+                </th>
+
+                <th  ng-click="sort('regUserEntity.id')" class="col-sm-1 text-center">
+                    <h4>id Product <span class="glyphicon sort-icon" ng-show="sortKey=='regUserEntity.id'" ng-class="{'glyphicon glyphicon-chevron-up':reverse, 'glyphicon glyphicon-chevron-down':!reverse}"></span></h4>
+                </th>
+
+                <th  ng-click="sort('count')" class="col-sm-1 text-center">
+                    <h4>Count <span class="glyphicon sort-icon" ng-show="sortKey=='count'" ng-class="{'glyphicon glyphicon-chevron-up':reverse, 'glyphicon glyphicon-chevron-down':!reverse}"></span></h4>
+                </th>
+
+                <th ng-click="sort('price')" class="col-sm-1 text-center">
+                    <h4>Price <span class="glyphicon sort-icon" ng-show="sortKey=='price'" ng-class="{'glyphicon glyphicon-chevron-up':reverse, 'glyphicon glyphicon-chevron-down':!reverse}"></span></h4>
+                </th>
+            </thead>
+            <tbody ng-repeat="item in getHistorySales()|orderBy:sortKey:reverse">
+                <td class="text-center">{{item.date_buy}}</td>
+                <td class="text-center">{{item.regUserEntity.name}}</td>
+                <td class="text-center">{{item.regUserEntity.subname}}</td>
+                <td class="text-center">{{item.phone}}</td>
+                <td class="text-center">{{item.regUserEntity.email}}</td>
+                <td class="cursorHand text-center">
+                    <a ng-click="getInfoProduct(item.nameProduct, $index)"  data-toggle="modal" data-target="#modalInfoProduct2">
+                        {{item.nameProduct}}
+                    </a>
+                    <div id="modalInfoProduct2" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
+                                    <h4 class="modal-title">Name: <span class="nameProductModal">{{infoProduct.name}}</span></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <img class="img-thumbnail" src="{{infoProduct.image}}"/>
+                                        </div>
+                                        <div class="col-sm-3 col-sm-offset-1">
+                                            <h4>Subcategory</h4>
+                                            <h4>Price</h4>
+                                            <h4 ng-show="infoProduct.color">Color</h4>
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <h4>:</h4>
+                                            <h4>:</h4>
+                                            <h4 ng-show="infoProduct.color">:</h4>
+
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <h4 class="nameProductModal">{{infoProduct.nameSubcategory}}</h4>
+                                            <h4 class="nameProductModal">{{infoProduct.price}}</h4>
+                                            <h4 class="nameProductModal" ng-show="infoProduct.color">{{infoProduct.color}}</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer"><button class="btn btn-default" type="button" data-dismiss="modal">Close</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="text-center">{{item.count}}</td>
+                <td class="text-center">{{item.price}}</td>
+            </tbody>
+        </table>
+    </div>
+</div>

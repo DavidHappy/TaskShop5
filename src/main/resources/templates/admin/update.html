@@ -1,0 +1,82 @@
+<div ng-controller="updateCtrl">
+    <div class="row">
+        <div class="col-sm-2 col-sm-offset-5">
+            <h2 style="margin-left: 45px">Update</h2>
+        </div>
+
+    </div>
+    <div class="row">
+        <div>
+            <div class="dropdown col-sm-2 col-sm-offset-5">
+                <button class="btn btn-default dropdown-toggle sizeButtonUpdate" type="button" data-toggle="dropdown">
+                    {{nameCategoryBtn}}
+                    <i class="glyphicon glyphicon-chevron-down"></i>
+                </button>
+                <ul class="dropdown-menu col-sm-2 col-sm-offset-5 marginDropdownBtn">
+                    <li ng-repeat="item in categoryList">
+                        <a ng-click="setNameCategoryBtn(item)">{{item}}</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="dropdown col-sm-2 col-sm-offset-5">
+                <button class="btn btn-default dropdown-toggle sizeButtonUpdate" type="button" data-toggle="dropdown">
+                    {{nameSubcategoryBtn}}
+                    <i class="glyphicon glyphicon-chevron-down"></i>
+                </button>
+                <ul class="dropdown-menu col-sm-2 col-sm-offset-5 marginDropdownBtn">
+                    <li ng-repeat="item in subcategoryList">
+                        <a ng-click="setNameSubcategoryBtn(item)">{{item}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top: 15px">
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+                <th class="titleBackground text-uppercase col-sm-1 text-center" ng-show="listGoods[0].name"><h4>name</h4></th>
+                <th class="titleBackground text-uppercase col-sm-1 text-center" ng-show="listGoods[0].brand"><h4>brand</h4></th>
+                <th class="titleBackground text-uppercase col-sm-1 text-center" ng-show="listGoods[0].price"><h4>price</h4></th>
+                <th class="titleBackground text-uppercase col-sm-1 text-center" ng-show="listGoods[0].color"><h4>color</h4></th>
+
+            </thead>
+
+            <tbody ng-repeat="item in listGoods">
+                <tr>
+                    <td ng-dblclick="isUpdate('name', $index)" class="col-sm-1 text-center"  ng-show="isUpdateValue[$index].name == 'false'"  ng-hide="!item.name"> {{item.name}}</td>
+                    <td  class="col-sm-1 text-center updateValue" ng-show="isUpdateValue[$index].name =='true'">
+                        <button ng-click="cancelUpdate('name', $index)" class="btn btn-default updateBtn"><i class="glyphicon glyphicon-remove"></i></button>
+                        <input class="panel panel-default" ng-model="item.name"/>
+                        <button ng-click="update('name', $index)" class="btn btn-default updateBtn"><i class="glyphicon glyphicon-ok"></i></button>
+                    </td>
+
+
+                    <td ng-dblclick="isUpdate('brand', $index)" class="col-sm-1 text-center"  ng-show="isUpdateValue[$index].brand == 'false'"  ng-hide="!item.brand"> {{item.brand}}</td>
+                    <td  class="col-sm-1 text-center updateValue" ng-show="isUpdateValue[$index].brand =='true'">
+                        <button ng-click="cancelUpdate('brand', $index)" class="btn btn-default updateBtn"><i class="glyphicon glyphicon-remove"></i></button>
+                        <input class="panel panel-default" ng-model="item.brand"/>
+                        <button ng-click="update('brand', $index)" class="btn btn-default updateBtn"><i class="glyphicon glyphicon-ok"></i></button>
+                    </td>
+
+
+                    <td ng-dblclick="isUpdate('price', $index)" class="col-sm-1 text-center"  ng-show="isUpdateValue[$index].price == 'false'"  ng-hide="!item.price"> {{item.price}}</td>
+                    <td  class="col-sm-1 text-center updateValue" ng-show="isUpdateValue[$index].price =='true'">
+                        <button ng-click="cancelUpdate('price', $index)" class="btn btn-default updateBtn"><i class="glyphicon glyphicon-remove"></i></button>
+                        <input class="panel panel-default" ng-model="item.price"/>
+                        <button ng-click="update('price', $index)" class="btn btn-default updateBtn"><i class="glyphicon glyphicon-ok"></i></button>
+                    </td>
+
+                    <td ng-dblclick="isUpdate('color', $index)" class="col-sm-1 text-center"  ng-show="isUpdateValue[$index].color == 'false'"  ng-hide="!item.color"> {{item.color}}</td>
+                    <td  class="col-sm-1 text-center updateValue" ng-show="isUpdateValue[$index].color =='true'">
+                        <button ng-click="cancelUpdate('color', $index)" class="btn btn-default updateBtn"><i class="glyphicon glyphicon-remove"></i></button>
+                        <input class="panel panel-default" ng-model="item.color"/>
+                        <button ng-click="update('color', $index)" class="btn btn-default updateBtn"><i class="glyphicon glyphicon-ok"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

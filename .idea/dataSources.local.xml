@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="heroku" uuid="af3d2dbc-77f0-4804-bb87-b477cbe1d75e">
+      <secret-storage>master_key</secret-storage>
+      <user-name>evcnhfpokndocm</user-name>
+    </data-source>
+  </component>
+</project>

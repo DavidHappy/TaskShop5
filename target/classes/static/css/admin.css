@@ -1,0 +1,107 @@
+.tab{
+    float: left;
+    height: 1500px;
+    margin-left: 25px;
+    margin-top: 10px;
+}
+
+.titleProduct{
+    margin-left: 42%;
+}
+
+.tabButton{
+    height: 50px;
+    border-radius: 100px;
+}
+
+.background{
+    background-color: #fcf8e3;
+}
+
+.positionleft{
+    float: left;
+}
+
+.marginTop{
+    margin-top: 3%;
+}
+
+.marginTop2{
+    margin-top: 7%;
+}
+
+#sizeButton{
+    width: 190px;
+}
+
+.marginLeft{
+    margin-left: 3%;
+}
+
+.imagePosition{
+    float: left;
+    margin-top: 7%;
+    margin-right: 5%;
+}
+
+#marginButton_7{
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
+.error{
+    font: italic 14px sans-serif;
+    color: #a94442;
+}
+
+#orderCount{
+    border-radius: 50%;
+    background-color: #5cb85c;
+    color: white;
+}
+
+.cursorHand{
+    cursor: pointer;
+}
+
+#soldFalse{
+    background-color: #d58512;
+    color: white;
+}
+
+#soldTrue{
+    background-color: #5cb85c;
+    color: black;
+}
+
+.nameProductModal{
+    color: #2e6da4;
+}
+
+.sizeButtonUpdate{
+    width: 180px;
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.marginDropdownBtn{
+    margin-left: 19px;
+}
+
+.updateValue {
+    background-color: wheat;
+}
+
+.updateBtn {
+    border-radius: 50%;
+}
+
+.titleBackground{
+    background-color: #8c8c8c;
+    color: white;
+}
+
+#tabsAdmin{
+    margin-top: 3%
+}

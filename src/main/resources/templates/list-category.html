@@ -1,0 +1,15 @@
+<div class="panel-group" id="collapse-group">
+    <div class="panel panel-default"  ng-repeat="item in categoryList">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <button ng-click="getSubcategory(item)" class="btn brn-default btn-block" data-toggle="collapse" data-parent="#collapse-group" href="#{{item}}">{{item}}</button>
+            </h4>
+        </div>
+        <div id="{{item}}" class="panel-collapse collapse">
+            <div class="panel-body" ng-repeat="subcategory in subCategoryList">
+                <a href="/list-goods" ng-click="listProduct(subcategory)" style="background-color: white" class="btn btn-block">{{subcategory}}</a>
+            </div>
+        </div>
+    </div>
+</div>
+
